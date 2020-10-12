@@ -17,33 +17,58 @@
 데이터의 수가 적어 수행시간에 큰 차이가 없는 경우 구현이 쉬운 알고리즘을 사용하기도 한다.
 
 ## 선택 정렬(Selection Sort)
-A[0]부터 A[n-2]까지,  
-미정렬된 값 A[i]~A[n-1] 중 가장 작은 값을 찾는다.=***선택***  
-미정렬 리스트의 맨앞 값(=A[i])과 자리를 바꾼다.
+i = 0부터 n-2까지 반복:  
+  미정렬된 값 A[i]~A[n-1] 중 가장 작은 값을 찾는다.=***선택***  
+  미정렬 리스트의 맨앞 값(=A[i])과 자리를 바꾼다.
 ### Pseudo code
 ```c
-selection_sort(A,n){
-  for i ← 0 to n-2 do
-    min ← index of minimum value in (A[i]~A[n-1])
-    swap A[i] and A[min]
-}
+SelectionSort(A,n)
+
+  for i = 0 to n-2 do
+    find index of minimum value in (A[i]~A[n-1])
+    swap A[i] and A[minIndex]
+
 ```
 ### Source code
-```c
-#define SWAP(x, y, tmp) ((tmp)=(x), (x)=(y), (y)=(tmp))
-void selection_sort(int list[], int n){
-  int min,tmp;
-  for(int i=0;i<n-1;i++){
-    min=i;
-    for(int j=i+1;j<n;j++){
-      if(list[j]<list[min]) min=j;
+```c++
+void selectionSort(vector<int>& A){
+  for(int i=0; i<A.size(); ++i){
+    int minIndex = i;
+    for(int j=i+1; j<A.size(); ++j){
+      if(A[minIndex]>A[j]) minIndex = j;
     }
-    SWAP(list[i], list[min], tmp);
+    swap(A[i], A[minIndex]);
   }
 }
 ```
 
 ## 삽입 정렬(Insertion Sort)
+i = 0부터 n-1까지 반복:  
+  정렬된 값 A[i-1]~A[0] 중 첫번째로 A[i]보다 작은 값이 나올때까지 정렬된 값을 밀어낸다.  
+  첫번째로 A[i]보다 작은 값 뒤에 A[i]를 넣는다.=***삽입***
+    
+
+### Pseudo code
+```c
+InsertionSort(A,n)
+
+  for i = 0 to n-1 do
+    (j = i to 1)
+    while A[j]<A[j-1] do
+      swap A[j-1] and A[j]
+```
+### Source code
+```c++
+void insertionSort(vector<int>& A){
+  for(int i=0; i<A.size(); ++i){
+    int j = i;
+    while(j>0 && A[j]<A[j-1]){
+      swap(A[j-1], A[j]);
+      --j;
+    }
+  }
+}
+```
 
 ## 버블 정렬(Bubble Sort)
 
