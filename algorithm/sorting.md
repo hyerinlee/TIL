@@ -3,8 +3,8 @@
 (*해당 문서에서는 숫자를 오름차순으로 정렬하는 예시만을 다루었다.)  
 대표적인 정렬 알고리즘으로 다음과 같은 것들이 있다.
 - 선택(Selection): 가장 작은 값을 ***선택*** 하여 맨앞과 자리를 바꾼다.  
-- 삽입(Insertion): 정렬된 값들을 밀어낸후 알맞은 자리에 ***삽입*** 한다.  
-- 버블(Bubble): 자신vs인접한 것, 둘 중 더 가벼운 ***버블*** 이 위로 뜬다(=값이 작은 것이 앞으로)...-_-;
+- 삽입(Insertion): 정렬된 값들을 하나씩 밀어낸후 알맞은 자리에 ***삽입*** 한다.  
+- 버블(Bubble): 가벼운 ***버블*** 이 인접한 버블을 하나씩 제치며 위로 뜬다(=값이 작은 것이 앞으로)...-_-;
 - 합병(Merge): 리스트를 잘게 분할하여 각각 정렬한 후 ***합병*** 한다.
 - 퀵(Quick) 
 - 힙(Heap)
@@ -16,9 +16,11 @@
 ***주의: 언제나 시간복잡도가 낮은 알고리즘만이 좋은 것은 아니다.***  
 데이터의 수가 적어 수행시간에 큰 차이가 없는 경우 구현이 쉬운 알고리즘을 사용하기도 한다.
 
+<br/>
+
 ## 선택 정렬(Selection Sort)
 i = 0부터 n-2까지 반복:  
-  미정렬된 값 A[i]~A[n-1] 중 가장 작은 값을 찾는다.=***선택***  
+  A[i]~A[n-1] (미정렬된 값들) 중 가장 작은 값을 찾는다.=***선택***  
   미정렬 리스트의 맨앞 값(=A[i])과 자리를 바꾼다.
 ### Pseudo code
 ```c
@@ -41,10 +43,11 @@ void selectionSort(vector<int>& A){
   }
 }
 ```
+<br/>
 
 ## 삽입 정렬(Insertion Sort)
 i = 0부터 n-1까지 반복:  
-  정렬된 값 A[i-1]~A[0] 중 첫번째로 A[i]보다 작은 값이 나올때까지 정렬된 값을 밀어낸다.  
+  A[i]와 정렬된 값 A[i-1]~A[0]을 비교하며, A[i]보다 작은 값이 나올때까지 정렬된 값을 밀어낸다.  
   첫번째로 A[i]보다 작은 값 뒤에 A[i]를 넣는다.=***삽입***
     
 
@@ -69,8 +72,49 @@ void insertionSort(vector<int>& A){
   }
 }
 ```
+<br/>
 
 ## 버블 정렬(Bubble Sort)
+i = 1부터 n-1까지 반복:  
+  A[n-1]~A[i] (미정렬된 값들) 차례로 자신과 한칸 앞값을 비교하여, 앞값이 더 크면 자리를 바꾼다.  
+  A[n-1]~A[i]까지 비교를 마치면 가장 가벼운 ***버블*** 하나가 정렬되게 된다.
+  
+### Pseudo code
+```c
+BubbleSort(A,n)
+
+  for i = 1 to n-1 do
+    for j = n-1 to i do
+      if A[j]<A[j-1] then swap A[j] and A[j-1]
+```
+### Source code
+```c++
+void bubbleSort(vector<int>& A){
+  for(int i=1; i<A.size(); ++i){
+    for(int j=A.size()-1; j>=i; --j){
+      if(A[j]<A[j-1]) swap(A[j], A[j-1]);
+    }
+  }
+```
+<br/>
+
+## 합병 정렬(Merge Sort)
+
+### Pseudo code
+```c
+MergeSort(list,left,right)
+
+  if sublist not contains only single element
+    mid = (left+right)/2
+    MergeSort(list,left,mid)
+    MergeSort(list,mid+1,right)
+    Merge(list,left,mid,right)
+    
+```
+### Source code
+```c++
+```
+
 
 # 기타 정렬 알고리즘
 - 기수(Radix)
