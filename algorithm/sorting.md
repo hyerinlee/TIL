@@ -20,8 +20,8 @@
 
 ## 선택 정렬(Selection Sort)
 i = 0부터 n-2까지 반복:  
-  A[i]~A[n-1] (미정렬된 값들) 중 가장 작은 값을 찾는다.=***선택***  
-  미정렬 리스트의 맨앞 값(=A[i])과 자리를 바꾼다.
+&nbsp;&nbsp;A[i]~A[n-1] (미정렬된 값들) 중 가장 작은 값을 찾는다.=***선택***  
+&nbsp;&nbsp;미정렬 리스트의 맨앞 값(=A[i])과 자리를 바꾼다.
 ### Pseudo code
 ```c
 SelectionSort(A,n)
@@ -47,8 +47,8 @@ void selectionSort(vector<int>& A){
 
 ## 삽입 정렬(Insertion Sort)
 i = 0부터 n-1까지 반복:  
-  A[i]와 정렬된 값 A[i-1]~A[0]을 비교하며, A[i]보다 작은 값이 나올때까지 정렬된 값을 밀어낸다.  
-  첫번째로 A[i]보다 작은 값 뒤에 A[i]를 넣는다.=***삽입***
+&nbsp;&nbsp;A[i]와 정렬된 값 A[i-1]~A[0]을 비교하며, A[i]보다 작은 값이 나올때까지 정렬된 값을 밀어낸다.  
+&nbsp;&nbsp;첫번째로 A[i]보다 작은 값 뒤에 A[i]를 넣는다.=***삽입***
     
 
 ### Pseudo code
@@ -76,8 +76,8 @@ void insertionSort(vector<int>& A){
 
 ## 버블 정렬(Bubble Sort)
 i = 1부터 n-1까지 반복:  
-  A[n-1]~A[i] (미정렬된 값들) 차례로 자신과 한칸 앞값을 비교하여, 앞값이 더 크면 자리를 바꾼다.  
-  A[n-1]~A[i]까지 비교를 마치면 가장 가벼운 ***버블*** 하나가 정렬되게 된다.
+&nbsp;&nbsp;A[n-1]~A[i] (미정렬된 값들) 차례로 자신과 한칸 앞값을 비교하여, 앞값이 더 크면 자리를 바꾼다.  
+&nbsp;&nbsp;A[n-1]~A[i]까지 비교를 마치면 가장 가벼운 ***버블*** 하나가 정렬되게 된다.
   
 ### Pseudo code
 ```c
@@ -97,19 +97,40 @@ void bubbleSort(vector<int>& A){
   }
 ```
 <br/>
+<br/>
 
 ## 합병 정렬(Merge Sort)
+더이상 나눠지지 않을 때까지 **(1)잘게 나눈 후 (2)새 리스트에 정렬하여 ***합병*** 한다.**  
+**(1) 잘게 나눈 후(Merge Sort)**  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 부분리스트 크기가 1이 될때까지 반으로 나눈다.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;('반으로 나눈다'는 것은 left,right를 지정하고 이들 간격을 좁히는 것으로 구현)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= left 또는 right에 mid값을 대입  
+**(2) 새 리스트에 정렬하여 합병한다(Merge)**  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 나누어진 두 부분리스트의 맨앞 값(left, mid+1)을 비교하여 작은 값을 새 리스트에 추가한다.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(두 부분리스트의 모든 값이 추가될 때까지)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 새 리스트에 모든 값이 추가되면 기존 배열에 복붙한다.
 
 ### Pseudo code
 ```c
 MergeSort(list,left,right)
 
-  if sublist not contains only single element
+  if sublist not contains only single element then
     mid = (left+right)/2
     MergeSort(list,left,mid)
     MergeSort(list,mid+1,right)
     Merge(list,left,mid,right)
-    
+```    
+```c    
+Merge(list,left,mid,right)
+
+  i = left, j = mid+1, k = left
+  Until all elements are added to the new list
+    if left < mid+1
+      then
+        sorted[k++] = list[i++]
+      else
+        sorted[k++] = list[j++]
+  copy sorted and paste into list
 ```
 ### Source code
 ```c++
