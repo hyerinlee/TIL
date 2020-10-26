@@ -138,10 +138,33 @@ Merge(list,left,mid,right)
 <br/>
 
 ## 퀵 정렬(Quick)
-더이상 나눠지지 않을 때까지 **(1)피벗을 지정하고 (2)이를 기준으로 둘로 나눈다.**  
-**(1) 피벗 지정 방식**  
+더이상 나눠지지 않을 때까지 **(1)피벗을 지정하여 정렬하고 (2)이를 기준으로 둘로 나눈다.**  
+**(1) 피벗을 지정하여 정렬(Partition)**  
+**(2) 이를 기준으로 둘로 나눈다(Quick Sort)**  
 
+### Pseudo code
+```c
+QuickSort(list,left,right)
 
+  while left<right
+    pi = partition(list,left,right)
+    QuickSort(list,left,pi-1)
+    QuickSort(list,pi+1,right)
+```
+```c
+Partition(list,left,right)
+
+  pivot = list[(left+right)/2]
+  low = left, high = right
+  while low<high
+    while list[low]<pivot
+      low++
+    while low<high and list[high]>pivot
+      high--
+    swap list[low] and list[high]
+  swap pivot and list[low]
+  return pivot
+```
 <br/>
 <br/>
 
