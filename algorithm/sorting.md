@@ -7,7 +7,7 @@
 - 버블(Bubble): 가벼운 ***버블*** 이 인접한 버블을 하나씩 제치며 위로 뜬다(=값이 작은 것이 앞으로)...-_-;
 - 합병(Merge): 리스트를 잘게 분할하여 각각 정렬한 후 ***합병*** 한다.
 - 퀵(Quick): **피벗**을 기준으로 피벗보다 작으면 왼쪽, 크면 오른쪽으로 값들을 옮김으로써 리스트를 분할한다.
-- 힙(Heap)
+- 힙(Heap): ***힙*** 의 특성을 이용하여 최댓값을 뽑아 미정렬 리스트의 마지막값과 자리를 바꾼다.
 
 ## Big-O에 따른 정렬 알고리즘 분류
 - **O(n<sup>2</sup>)**: 선택/삽입/버블. 비효율적이지만 구현이 쉽다.  
@@ -100,12 +100,13 @@ void bubbleSort(vector<int>& A){
 <br/>
 
 ## 합병 정렬(Merge Sort)
-더이상 나눠지지 않을 때까지 **(1)잘게 나눈 후 (2)새 리스트에 정렬하여 ***합병*** 한다.**  
-**(1) 잘게 나눈 후(Merge Sort)**  
+더이상 나눠지지 않을 때까지:  
+**(1)잘게 나눈 후 (2)새 리스트에 정렬하여 ***합병*** 한다.**  
+&nbsp;&nbsp;**(1) 잘게 나눈 후(Merge Sort)**  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 부분리스트 크기가 1이 될때까지 반으로 나눈다.  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;('반으로 나눈다'는 것은 left,right를 지정하고 이들 간격을 좁히는 것으로 구현)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= left 또는 right에 mid값을 대입  
-**(2) 새 리스트에 정렬하여 합병한다(Merge)**  
+&nbsp;&nbsp;**(2) 새 리스트에 정렬하여 합병한다(Merge)**  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 나누어진 두 부분리스트의 맨앞 값(left, mid+1)을 비교하여 작은 값을 새 리스트에 추가한다.  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(두 부분리스트의 모든 값이 추가될 때까지)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 새 리스트에 모든 값이 추가되면 기존 배열에 복붙한다.
@@ -137,10 +138,11 @@ Merge(list,left,mid,right)
 ```
 <br/>
 
-## 퀵 정렬(Quick)
-더이상 나눠지지 않을 때까지 **(1)피벗을 지정하여 정렬하고 (2)이를 기준으로 둘로 나눈다.**  
-**(1) 피벗을 지정하여 정렬(Partition)**  
-**(2) 이를 기준으로 둘로 나눈다(Quick Sort)**  
+## 퀵 정렬(Quick Sort)
+더이상 나눠지지 않을 때까지:  
+**(1)피벗을 지정하여 정렬하고 (2)이를 기준으로 둘로 나눈다.**  
+&nbsp;&nbsp;**(1) 피벗을 지정하여 정렬(Partition)**  
+&nbsp;&nbsp;**(2) 이를 기준으로 둘로 나눈다(Quick Sort)**  
 
 ### Pseudo code
 ```c
@@ -164,6 +166,24 @@ Partition(list,left,right)
     swap list[low] and list[high]
   swap pivot and list[low]
   return pivot
+```
+<br/>
+
+## 힙 정렬(Heap Sort)
+리스트를 최대힙으로 변환한 후 i = n부터 2까지 반복:  
+&nbsp;&nbsp;최댓값(루트노드)과 맨 마지막값의 자리를 바꾼다.  
+&nbsp;&nbsp;(바뀐 루트노드 값을 옮겨) 다시 리스트를 최대힙으로 만든다.
+
+### Pseudo code
+```c
+HeapSort(list)
+
+  n = length of list
+  for i = n/2 to 1 do
+    MaxHeapify(list,i)
+  for i = n to 2 do
+    swap list[1] and list[i]
+    MaxHeapify(list,1)
 ```
 <br/>
 <br/>
