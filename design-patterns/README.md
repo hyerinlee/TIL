@@ -17,11 +17,11 @@ GoF에서는 23가지의 디자인 패턴을 다음 3가지 유형으로 분류�
 상호작용을 패턴화한 것들
 - Interpreter
 - Template method
-- Chain of Responsibility
+- Chain of Responsibility - 사슬처럼 연결된 객체들이 요청을 처리하거나 다음 객체에 넘기며 요청을 수행한다.
 - Command
 - Itorator
 - Mediator
-- Memento
+- Memento - 객체의 상태 정보를 저장하여 이전 상태로 복원 가능하도록 한다.
 - Observer
 - State
 - [Strategy](https://github.com/hyerinlee/TIL/blob/master/design-patterns/strategy.md) - 인터페이스(접근점)를 통해 동일 계열 알고리즘군(전략)을 교환하여 사용할 수 있도록 한다.
@@ -31,8 +31,8 @@ GoF에서는 23가지의 디자인 패턴을 다음 3가지 유형으로 분류�
 프로그램 구조 관련 패턴들
 - [Adapter](https://github.com/hyerinlee/TIL/blob/master/design-patterns/adapter.md) - 어댑터를 사용하여 호환되지 않는 인터페이스를 사용 가능하도록 변경한다.
 - Bridge
-- Composite
-- Decorator
+- Composite - 객체 관계를 트리 구조로 구성하여 단일객체와 복합객체를 동일하게 취급할 수 있도록 한다.
+- Decorator - 객체에 추가 기능이 필요할 때 유연하게 확장 가능하도록 한다.
 - Facade
 - Flyweight
 - Proxy
